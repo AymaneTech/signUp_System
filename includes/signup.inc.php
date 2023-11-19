@@ -11,6 +11,8 @@ function insertUserData($pdo, $userInfo){
     $stmt->bindParam(1, $userInfo['username'], PDO::PARAM_STR);
     $stmt->bindParam(2, $userInfo['email'], PDO::PARAM_STR);
     $stmt->bindParam(3, $userInfo['pwd'], PDO::PARAM_STR);
+
+    $stmt->execute();
     echo "registred succefly";
 }
 
@@ -24,7 +26,9 @@ function register(){
 
     // check password
     if($pwd !== $pwd2){
-        header("Location: http://localhost/signUp_system/signup.php?password=incorrect");
+        session_start();
+        $_SESSION["incorrectPwd"] = "invalid password";
+        header("Location: http://localhost/signUp_system/signup.php?password=inccorect");
         exit();
     }
     // if is correct i put user info in an array
@@ -36,7 +40,7 @@ function register(){
 
         ];
         insertUserData($pdo, $userInfo);
-        echo "here";
+        header("location: http://localhost/signUp_system");
     }
 }
 
