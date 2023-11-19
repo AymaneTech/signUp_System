@@ -10,4 +10,3 @@ try {
 }catch(PDOException $e){
     echo "connection to database failed !!! ". $e->getMessage();
 }
-?>
