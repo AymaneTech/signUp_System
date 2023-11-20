@@ -1,6 +1,7 @@
 <?php
-if (isset($_GET['name'])) {
-    $username = $_GET['name'];
+session_start();
+if (!isset($_SESSION['email']) && !isset($_SESSION['password'])) {
+    header("location: http://localhost/signUp_system/authentication/login.php");
 }
 ?>
 

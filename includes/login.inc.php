@@ -16,18 +16,19 @@ function checkAccountExisting($pdo, $pwd){
 
     if($email === $row["email"]){
         if (password_verify($Loginpwd, $row["password"])){
-            header("location: http://localhost/signUp_system/?username=$username");
+            session_start();
+            $_SESSION["email"] = $_POST["email"];
+            $_SESSION["email"] = $_POST["password"];
+
+            header("location: http://localhost/signUp_system/");
         }
         else{
-            session_start();
-            $_SESSION["incorrectPwd"] = "invalid password";
-            header("location: http://localhost/signUp_system/authentication/login.php?erro=email incorrect");
+            header("location: http://localhost/signUp_system/authentication/login.php?incorrectPwd=password inccorect");
         }
     }else {
-        session_start();
-        $_SESSION["incorrectPwd"] = "there is no account with this email";
-        header("location: http://localhost/signUp_system/authentication/login.php?erro=email incorrect");
+        header("location: http://localhost/signUp_system/authentication/login.php?incorrectPwd=there is no account with this email");
     }
+
     exit();
 
 }

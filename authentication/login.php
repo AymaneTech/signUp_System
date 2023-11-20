@@ -52,12 +52,12 @@
                         </div>
                         <?php
                         session_start();
-                        if (isset($_SESSION["incorrectPwd"])){
+                        if (isset($_GET["incorrectPwd"])){
                             ?>
-                            <p class="d-flex justify-content-center text-danger"><?= $_SESSION["incorrectPwd"]; ?></p>
+                            <p class="d-flex justify-content-center text-danger"><?= $_GET["incorrectPwd"]; ?></p>
                             <?php
+                            unset($_GET['incorrectPwd']);
                         }
-                        session_unset();
                         ?>
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg"

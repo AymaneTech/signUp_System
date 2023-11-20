@@ -30,7 +30,6 @@ function register(){
         session_start();
         $_SESSION["incorrectPwd"] = "invalid password";
         header("Location: http://localhost/signUp_system/signup.php?password=inccorect");
-        exit();
     }
     // if is correct i put user info in an array
     else {
@@ -41,9 +40,13 @@ function register(){
 
         ];
         insertUserData($pdo, $userInfo);
+        session_start();
+        $_SESSION["email"] = $_POST["email"];
+        $_SESSION["email"] = $_POST["password"];
         header("location: http://localhost/signUp_system");
-        exit();
+
     }
+    exit();
 }
 
 
