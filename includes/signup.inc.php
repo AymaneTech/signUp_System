@@ -6,17 +6,6 @@ if(isset($_POST["register"])){
     register();
 }
 
-function insertUserData($pdo, $userInfo){
-    $insertQuery = "INSERT INTO users (username, email, password) VALUES (?, ?, ?);";
-    $stmt = $pdo->prepare($insertQuery);
-    $stmt->bindParam(1, $userInfo['username'], PDO::PARAM_STR);
-    $stmt->bindParam(2, $userInfo['email'], PDO::PARAM_STR);
-    $stmt->bindParam(3, $userInfo['pwd'], PDO::PARAM_STR);
-
-    $stmt->execute();
-    echo "registred succefly";
-}
-
 function register(){
     global $pdo;
 
@@ -37,18 +26,29 @@ function register(){
             'username' => $username,
             'email' => $email,
             'pwd' => hash_password($_POST["pwd"])
-
         ];
         insertUserData($pdo, $userInfo);
         session_start();
         $_SESSION["email"] = $_POST["email"];
-        $_SESSION["email"] = $_POST["password"];
+        $_SESSION["password"] = $userInfo["pwd"];
+        $_SESSION["username"] = $_POST["username"];
+
         header("location: http://localhost/signUp_system");
 
     }
     exit();
 }
+// function that insert data in database
+function insertUserData($pdo, $userInfo){
+    $insertQuery = "INSERT INTO users (username, email, password) VALUES (?, ?, ?);";
+    $stmt = $pdo->prepare($insertQuery);
+    $stmt->bindParam(1, $userInfo['username'], PDO::PARAM_STR);
+    $stmt->bindParam(2, $userInfo['email'], PDO::PARAM_STR);
+    $stmt->bindParam(3, $userInfo['pwd'], PDO::PARAM_STR);
 
+    $stmt->execute();
+    echo "registred succefly";
+}
 
 function hash_password($pwd){
     $options = ['cost' => 12];

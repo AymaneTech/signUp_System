@@ -1,6 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['email']) && !isset($_SESSION['password'])) {
+
     header("location: http://localhost/signUp_system/authentication/login.php");
 }
 ?>
@@ -85,7 +86,7 @@ if (!isset($_SESSION['email']) && !isset($_SESSION['password'])) {
                 <div class="dropdown">
                     <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                         id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <img src="./assets/images/bg-2.jpg" class="rounded-circle" height="25"
+                        <img src="./assets/images/profile.jpg" class="rounded-circle" height="25"
                             alt="Black and White Portrait of a Man" loading="lazy" />
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
@@ -105,7 +106,9 @@ if (!isset($_SESSION['email']) && !isset($_SESSION['password'])) {
         </div>
         <!-- Container wrapper -->
     </nav>
-    <!-- Navbar -->
+
+    <h2 class="d-flex justify-content-center m-5">Welcome Back <?php echo $_SESSION["username"] ?></h2>
+
 </body>
 
 </html>

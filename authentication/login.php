@@ -56,7 +56,6 @@
                             ?>
                             <p class="d-flex justify-content-center text-danger"><?= $_GET["incorrectPwd"]; ?></p>
                             <?php
-                            unset($_GET['incorrectPwd']);
                         }
                         ?>
                         <div class="text-center text-lg-start mt-4 pt-2">

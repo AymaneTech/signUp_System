@@ -7,9 +7,11 @@ global $pdo;
 function checkAccountExisting($pdo, $pwd){
     $email = $_POST["email"];
     $Loginpwd = $_POST["password"];
-    $checkSql = "SELECT * FROM users WHERE email = ?";
+
+    $checkSql = "SELECT * FROM users WHERE email = :email";
     $stmt = $pdo->prepare($checkSql);
-    $stmt->execute([$email]);
+    $stmt->bindParam("email", $email, PDO::PARAM_STR);
+    $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $username =  $row["username"];
@@ -18,7 +20,7 @@ function checkAccountExisting($pdo, $pwd){
         if (password_verify($Loginpwd, $row["password"])){
             session_start();
             $_SESSION["email"] = $_POST["email"];
-            $_SESSION["email"] = $_POST["password"];
+            $_SESSION["password"] = $_POST["password"];
 
             header("location: http://localhost/signUp_system/");
         }
