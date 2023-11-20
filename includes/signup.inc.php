@@ -1,6 +1,7 @@
 <?php
 include ('db.php');
 
+
 if(isset($_POST["register"])){
     register();
 }
@@ -41,6 +42,7 @@ function register(){
         ];
         insertUserData($pdo, $userInfo);
         header("location: http://localhost/signUp_system");
+        exit();
     }
 }
 

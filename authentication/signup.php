@@ -1,5 +1,5 @@
 <?php
-include ('includes/signup.inc.php');
+include ('../includes/signup.inc.php');
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ include ('includes/signup.inc.php');
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                <form action="includes/signup.inc.php" method="post" class="mx-1 mx-md-4">
+                <form action="../includes/signup.inc.php" method="post" class="mx-1 mx-md-4">
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
